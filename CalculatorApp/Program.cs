@@ -4,6 +4,8 @@ class Program
 {
     static void Main(string[] args)
     {
+        try
+        {
         Console.WriteLine("Enter the first number:");
         double num1 = Convert.ToDouble(Console.ReadLine());
 
@@ -15,8 +17,18 @@ class Program
 
         var calculator = new Calculator();    
         double result = calculator.PerformOperation(num1, num2, operation);
-        Console.WriteLine($"The result is: {result}");
-
-        Console.WriteLine("Calculation attempt finished.");
+        }
+        catch(FormatException)
+        {
+            Console.Error.WriteLine("Invalid input. Please enter numeric values.");
+        }
+        catch(Exception e)
+        {
+            Log.Error(e.Message);
+        }
+        finally
+        {
+            Console.WriteLine("Calculation attempt finished.");
+        }
     }
 }

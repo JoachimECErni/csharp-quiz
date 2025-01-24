@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Boot Camp\\Desktop\\ERNI-EPM-University\\2. Backend Development Basics\\2.4 Error Handling (C#)\\csharp-quiz\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C42D1C22-5C2A-4450-873B-7A615352A85D}|CalculatorApp\\CalculatorApp.csproj|c:\\users\\boot camp\\desktop\\erni-epm-university\\2. backend development basics\\2.4 error handling (c#)\\csharp-quiz\\calculatorapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C42D1C22-5C2A-4450-873B-7A615352A85D}|CalculatorApp\\CalculatorApp.csproj|solutionrelative:calculatorapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Boot Camp\\Desktop\\ERNI-EPM-University\\2. Backend Development Basics\\2.4 Error Handling (C#)\\csharp-quiz\\CalculatorApp\\Program.cs",
+              "RelativeDocumentMoniker": "CalculatorApp\\Program.cs",
+              "ToolTip": "C:\\Users\\Boot Camp\\Desktop\\ERNI-EPM-University\\2. Backend Development Basics\\2.4 Error Handling (C#)\\csharp-quiz\\CalculatorApp\\Program.cs",
+              "RelativeToolTip": "CalculatorApp\\Program.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAQwBIAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-24T08:49:16.211Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

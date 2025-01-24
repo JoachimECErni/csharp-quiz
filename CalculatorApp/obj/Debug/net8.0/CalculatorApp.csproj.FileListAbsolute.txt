@@ -1,0 +1,15 @@
+C:\Users\Boot Camp\Desktop\ERNI-EPM-University\2. Backend Development Basics\2.4 Error Handling (C#)\csharp-quiz\CalculatorApp\bin\Debug\net8.0\CalculatorApp.exe
+C:\Users\Boot Camp\Desktop\ERNI-EPM-University\2. Backend Development Basics\2.4 Error Handling (C#)\csharp-quiz\CalculatorApp\bin\Debug\net8.0\CalculatorApp.deps.json
+C:\Users\Boot Camp\Desktop\ERNI-EPM-University\2. Backend Development Basics\2.4 Error Handling (C#)\csharp-quiz\CalculatorApp\bin\Debug\net8.0\CalculatorApp.runtimeconfig.json
+C:\Users\Boot Camp\Desktop\ERNI-EPM-University\2. Backend Development Basics\2.4 Error Handling (C#)\csharp-quiz\CalculatorApp\bin\Debug\net8.0\CalculatorApp.dll
+C:\Users\Boot Camp\Desktop\ERNI-EPM-University\2. Backend Development Basics\2.4 Error Handling (C#)\csharp-quiz\CalculatorApp\bin\Debug\net8.0\CalculatorApp.pdb
+C:\Users\Boot Camp\Desktop\ERNI-EPM-University\2. Backend Development Basics\2.4 Error Handling (C#)\csharp-quiz\CalculatorApp\obj\Debug\net8.0\CalculatorApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Boot Camp\Desktop\ERNI-EPM-University\2. Backend Development Basics\2.4 Error Handling (C#)\csharp-quiz\CalculatorApp\obj\Debug\net8.0\CalculatorApp.AssemblyInfoInputs.cache
+C:\Users\Boot Camp\Desktop\ERNI-EPM-University\2. Backend Development Basics\2.4 Error Handling (C#)\csharp-quiz\CalculatorApp\obj\Debug\net8.0\CalculatorApp.AssemblyInfo.cs
+C:\Users\Boot Camp\Desktop\ERNI-EPM-University\2. Backend Development Basics\2.4 Error Handling (C#)\csharp-quiz\CalculatorApp\obj\Debug\net8.0\CalculatorApp.csproj.CoreCompileInputs.cache
+C:\Users\Boot Camp\Desktop\ERNI-EPM-University\2. Backend Development Basics\2.4 Error Handling (C#)\csharp-quiz\CalculatorApp\obj\Debug\net8.0\CalculatorApp.sourcelink.json
+C:\Users\Boot Camp\Desktop\ERNI-EPM-University\2. Backend Development Basics\2.4 Error Handling (C#)\csharp-quiz\CalculatorApp\obj\Debug\net8.0\CalculatorApp.dll
+C:\Users\Boot Camp\Desktop\ERNI-EPM-University\2. Backend Development Basics\2.4 Error Handling (C#)\csharp-quiz\CalculatorApp\obj\Debug\net8.0\refint\CalculatorApp.dll
+C:\Users\Boot Camp\Desktop\ERNI-EPM-University\2. Backend Development Basics\2.4 Error Handling (C#)\csharp-quiz\CalculatorApp\obj\Debug\net8.0\CalculatorApp.pdb
+C:\Users\Boot Camp\Desktop\ERNI-EPM-University\2. Backend Development Basics\2.4 Error Handling (C#)\csharp-quiz\CalculatorApp\obj\Debug\net8.0\CalculatorApp.genruntimeconfig.cache
+C:\Users\Boot Camp\Desktop\ERNI-EPM-University\2. Backend Development Basics\2.4 Error Handling (C#)\csharp-quiz\CalculatorApp\obj\Debug\net8.0\ref\CalculatorApp.dll
