@@ -1,22 +1,22 @@
-﻿namespace CalculatorApp;
+﻿
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
+namespace CalculatorApp;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Enter the first number:");
-        double num1 = Convert.ToDouble(Console.ReadLine());
+        ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
+        {
+            builder.AddConsole();
+        });
 
-        Console.WriteLine("Enter the second number:");
-        double num2 = Convert.ToDouble(Console.ReadLine());
+        var logger = loggerFactory.CreateLogger<Program>();
 
-        Console.WriteLine("Enter the operation (add, subtract, multiply, divide):");
-        string operation = Console.ReadLine()?.ToLower() ?? string.Empty;
+        var CalculatorApp = new Calculator();
 
-        var calculator = new Calculator();    
-        double result = calculator.PerformOperation(num1, num2, operation);
-        Console.WriteLine($"The result is: {result}");
-
-        Console.WriteLine("Calculation attempt finished.");
+        CalculatorApp.Run();
     }
 }

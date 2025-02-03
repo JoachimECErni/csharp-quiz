@@ -1,172 +1,85 @@
 using NUnit.Framework;
 
+using Microsoft.Extensions.Logging;
+using Microsoft.VisualStudio.TestPlatform.TestHost;
+using Moq;
+using Castle.Core.Configuration;
+
 namespace CalculatorApp.UnitTests;
 
 [TestFixture]
 public class CalculatorTest
 {
-    string NormalizeLineEndings(string input)
+    private Calculator _calculator;
+    private Mock<ILogger<Calculator>> _mockLogger;
+
+    [SetUp]
+    public void SetUp()
     {
-        return input.Replace("\r\n", "\n").Replace("\r", "\n");
+        _mockLogger = new Mock<ILogger<Calculator>>();
+        _calculator = new Calculator(_mockLogger.Object);
     }
 
-    [Test]
-    public void Successful_Calculation()
+    [TestCase("5","10", "add",15)]
+    public void Successful_Calculation(string num1, string num2, string operation, double expected_value)
     {
-        var calculator = new Calculator();
+        var result = _calculator.Run(num1,num2,operation);
 
-        var result = calculator.PerformOperation(10,5,"add");
+        _mockLogger.Verify(
+            logger => logger.Log(
+                LogLevel.Information,
+                It.IsAny<EventId>(),
+                It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("The result is")),
+                null,
+                It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+            Times.Once);
 
-        Assert.That(result, Is.EqualTo(15));
+        Assert.That(result, Is.EqualTo(expected_value));
     }
-    [Test]
-    public void Invalid_Input()
+
+    [TestCase("abc")]
+    public void Invalid_Input(string num1)
     {
-        // Arrange
-        var input = "abc\n2\nadd\n";
-        var expectedErrorMessage = "Invalid input. Please enter numeric values.\n";
-        var expectedFinalMessage = "Enter the first number:\nCalculation attempt finished.\n";
+        _calculator.Run(num1);
 
-        using (var stringReader = new StringReader(input))
-        using (var stringWriter = new StringWriter())
-        using (var errorWriter = new StringWriter())
-        {
-            Console.SetIn(stringReader);
-            Console.SetOut(stringWriter);
-            Console.SetError(errorWriter);
-
-            // Act
-            try
-            {
-                Console.WriteLine("Enter the first number:");
-                double num1 = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine("Enter the second number:");
-                double num2 = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine("Enter the operation (add, subtract, multiply, divide):");
-                string operation = Console.ReadLine()?.ToLower() ?? string.Empty;
-
-                var calculator = new Calculator();
-                double result = calculator.PerformOperation(num1, num2, operation);
-            }
-            catch (FormatException)
-            {
-                Console.Error.WriteLine("Invalid input. Please enter numeric values.");
-            }
-            catch (Exception e)
-            {
-                Log.Error(e.Message);
-                // Console.Error.WriteLine(e.Message); // Simulating Log.Error for this example
-            }
-            finally
-            {
-                Console.WriteLine("Calculation attempt finished.");
-            }
-
-            // Assert
-            Assert.That(NormalizeLineEndings(errorWriter.ToString()), Is.EqualTo(expectedErrorMessage));
-            Assert.That(NormalizeLineEndings(stringWriter.ToString()), Does.Contain(expectedFinalMessage));
-        }
+        _mockLogger.Verify(
+            logger => logger.Log(
+                LogLevel.Error,
+                It.IsAny<EventId>(),
+                It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Invalid input. Please enter numeric values.")),
+                null,
+                It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+            Times.Once);
     }
-    [Test]
-    public void Division_By_Zero()
+
+    [TestCase("10","0","divide")]
+    public void Division_By_Zero(string num1, string num2, string operation)
     {
-        // Arrange
-        var input = "10\n0\ndivide\n";
-        var expectedErrorMessage = "Cannot divide by zero.\n";
-        var expectedFinalMessage = "Enter the first number:\nEnter the second number:\nEnter the operation (add, subtract, multiply, divide):\nCalculation attempt finished.\n";
+        _calculator.Run(num1, num2, operation);
 
-        using (var stringReader = new StringReader(input))
-        using (var stringWriter = new StringWriter())
-        using (var errorWriter = new StringWriter())
-        {
-            Console.SetIn(stringReader);
-            Console.SetOut(stringWriter);
-            Console.SetError(errorWriter);
-
-            // Act
-            try
-            {
-                Console.WriteLine("Enter the first number:");
-                double num1 = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine("Enter the second number:");
-                double num2 = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine("Enter the operation (add, subtract, multiply, divide):");
-                string operation = Console.ReadLine()?.ToLower() ?? string.Empty;
-
-                var calculator = new Calculator();
-                double result = calculator.PerformOperation(num1, num2, operation);
-            }
-            catch (FormatException)
-            {
-                Console.Error.WriteLine("Invalid input. Please enter numeric values.");
-            }
-            catch (Exception e)
-            {
-                Log.Error(e.Message);
-                // Console.Error.WriteLine(e.Message); // Simulating Log.Error for this example
-            }
-            finally
-            {
-                Console.WriteLine("Calculation attempt finished.");
-            }
-
-            // Assert
-            Assert.That(NormalizeLineEndings(errorWriter.ToString()), Is.EqualTo(expectedErrorMessage));
-            Assert.That(NormalizeLineEndings(stringWriter.ToString()), Does.Contain(expectedFinalMessage));
-        }
+        _mockLogger.Verify(
+            logger => logger.Log(
+                LogLevel.Error,
+                It.IsAny<EventId>(),
+                It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Cannot divide by zero.")),
+                null,
+                It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+            Times.Once);
     }
-    [Test]
-    public void Unsupported_Operation()
+
+    [TestCase("5", "0", "modulo")]
+    public void Unsupported_Operation(string num1, string num2, string operation)
     {
-        // Arrange
-        var input = "10\n5\nmodulo\n";
-        var expectedErrorMessage = "An error occurred: The specified operation is not supported.\n";
-        var expectedFinalMessage = "Enter the first number:\nEnter the second number:\nEnter the operation (add, subtract, multiply, divide):\nCalculation attempt finished.\n";
+        _calculator.Run(num1, num2, operation);
 
-        using (var stringReader = new StringReader(input))
-        using (var stringWriter = new StringWriter())
-        using (var errorWriter = new StringWriter())
-        {
-            Console.SetIn(stringReader);
-            Console.SetOut(stringWriter);
-            Console.SetError(errorWriter);
-
-            // Act
-            try
-            {
-                Console.WriteLine("Enter the first number:");
-                double num1 = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine("Enter the second number:");
-                double num2 = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine("Enter the operation (add, subtract, multiply, divide):");
-                string operation = Console.ReadLine()?.ToLower() ?? string.Empty;
-
-                var calculator = new Calculator();
-                double result = calculator.PerformOperation(num1, num2, operation);
-            }
-            catch (FormatException)
-            {
-                Console.Error.WriteLine("Invalid input. Please enter numeric values.");
-            }
-            catch (Exception e)
-            {
-                Log.Error(e.Message);
-                // Console.Error.WriteLine(e.Message); // Simulating Log.Error for this example
-            }
-            finally
-            {
-                Console.WriteLine("Calculation attempt finished.");
-            }
-
-            // Assert
-            Assert.That(NormalizeLineEndings(errorWriter.ToString()), Is.EqualTo(expectedErrorMessage));
-            Assert.That(NormalizeLineEndings(stringWriter.ToString()), Does.Contain(expectedFinalMessage));
-        }
+        _mockLogger.Verify(
+            logger => logger.Log(
+                LogLevel.Error,
+                It.IsAny<EventId>(),
+                It.Is<It.IsAnyType>((v, t) => v.ToString()!.
+                Contains("An error occurred: The specified operation is not supported.")),
+                null,
+                It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+            Times.Once);
     }
 }
